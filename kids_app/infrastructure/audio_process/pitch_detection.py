@@ -18,8 +18,9 @@ def trim(midi_data: pretty_midi.PrettyMIDI):
 
 
 class BasicPitcher:
-    def __init__(self, default_path: Path):
+    def __init__(self, default_path: Path, data_path: Optional[Path] = None):
         self.default_path = default_path
+        self.data_path = data_path
 
     def __call__(self, audio_file_path: Union[Path, str],
                  output_path: Optional[Union[Path, str]]) -> pretty_midi.PrettyMIDI:
@@ -32,5 +33,18 @@ class BasicPitcher:
             output_path = self.default_path
         midi_data = trim(midi_data)
         midi_data.write(output_path)
+
+        return midi_data
+
+    def save_to_data(self, midi_data: pretty_midi.PrettyMIDI, filename: str,
+                     preprocess: bool = True) -> pretty_midi.PrettyMIDI:
+        if preprocess:
+            midi_data = trim(midi_data)
+        midi_data.write(self.data_path / filename)
+        return midi_data
+
+    @staticmethod
+    def from_file(midi_file_path: Path) -> pretty_midi.PrettyMIDI:
+        midi_data = pretty_midi.PrettyMIDI(midi_file_path)
 
         return midi_data
