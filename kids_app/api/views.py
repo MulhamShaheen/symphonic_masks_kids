@@ -18,7 +18,7 @@ SRC_EXT = {
 }
 
 
-class UserViewSet(viewsets.ViewSet):
+class SongViewSet(viewsets.ViewSet):
     def list(self, request):
         queryset = Song.objects.all()
         serializer = SongSerializer(queryset, many=True)
