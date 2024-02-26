@@ -14,4 +14,10 @@ class Song(models.Model):
 
     @property
     def xml_path(self):
-        return f"data/xml/{self.title}.xml"
+        return f"data/xml/{self.pk}.xml"
+
+    @property
+    def mxl(self):
+        with open(self.xml_path, "r") as f:
+            mxl = f
+        return mxl
