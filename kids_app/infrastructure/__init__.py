@@ -17,5 +17,5 @@ us['musescoreDirectPNGPath'] = settings.musescoreDirectPNGPath
 us['musicxmlPath'] = settings.musicxmlPath
 us['lilypondPath'] = settings.lilypondPath
 
-basic_pitcher = BasicPitcher(Path("data/midi/temp.midi"))
+basic_pitcher = BasicPitcher(Path("data/midi/temp.midi"), Path("data/midi/"))
 music21_renderer = SheetGenerator([0.5, 1, 4], [1], Path("data/xml/temp.xml"))

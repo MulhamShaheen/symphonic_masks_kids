@@ -40,10 +40,6 @@ class SheetGenerator:
         for instrument in midi_data.instruments:
             for i, note in enumerate(instrument.notes):
                 note_time = note.end - note.start
-                # if note_time / avg_note_time < 0.1 and i > 0:
-                #     if note.pitch == instrument.notes[i - 1].pitch:
-                #         instrument.notes[i - 1].end = note.end
-                #         continue
                 notes.append(note)
 
                 note_fraction = note_time / avg_note_time
