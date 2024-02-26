@@ -7,9 +7,11 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
 
-def handle_uploaded_file(file, path: Optional[str] = None):
+def handle_uploaded_file(file, path: Optional[str] = None, filename: Optional[str] = None):
     fss = FileSystemStorage()
-    file = fss.save(path + file.name, file)
+    if filename is None:
+        filename = file.name
+    file = fss.save(path + filename, file)
     file_url = fss.url(file)
 
     return file_url
